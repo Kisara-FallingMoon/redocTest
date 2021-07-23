@@ -72,40 +72,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    /account:
-        get:
-        summary: 'Sample endpoint: Returns details about a particular account'
-        description: 'Test account changes'
-        operationId: listUser
-        deprecated: true
-        tags:
-            - account
-        parameters:
-          - name: id
-            in: query
-            description: ID of the account
-            required: true
-            schema:
-                type: integer
-                format: int32
-        responses:
-            '200':
-            description: 'Sample response: Details about a account by ID'
-            headers:
-                x-next:
-                description: A link to the next page of responses
-                schema:
-                    type: string
-            content:
-                application/json:
-                schema:
-                    $ref: '#/components/schemas/User'
-            default:
-            description: Unexpected error
-            content:
-                application/json:
-                schema:
-                    $ref: '#/components/schemas/Error'
 components:
   schemas:
     User:
