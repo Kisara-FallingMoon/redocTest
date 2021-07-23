@@ -1,1 +1,140 @@
-
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: sme customer API
+servers:
+  - url: 'https://petstore.swagger.io/v1'
+paths:
+  /user:
+    get:
+      summary: 'Sample endpoint: Returns details about a particular user'
+      description: 'some content'
+      operationId: listUser
+      tags:
+        - user
+      parameters:
+        - name: id
+          in: query
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: 'Sample response: Details about a user by ID'
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customer:
+    get:
+      summary: 'Sample endpoint: Returns details about a particular customer'
+      description: 'Test customer changes'
+      operationId: listUser
+      deprecated: true
+      tags:
+        - customer
+      parameters:
+        - name: id
+          in: query
+          description: ID of the customer
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: 'Sample response: Details about a customer by ID'
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    /account:
+        get:
+        summary: 'Sample endpoint: Returns details about a particular account'
+        description: 'Test account changes'
+        operationId: listUser
+        deprecated: true
+        tags:
+            - account
+        parameters:
+            - name: id
+            in: query
+            description: ID of the account
+            required: true
+            schema:
+                type: integer
+                format: int32
+        responses:
+            '200':
+            description: 'Sample response: Details about a account by ID'
+            headers:
+                x-next:
+                description: A link to the next page of responses
+                schema:
+                    type: string
+            content:
+                application/json:
+                schema:
+                    $ref: '#/components/schemas/User'
+            default:
+            description: Unexpected error
+            content:
+                application/json:
+                schema:
+                    $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
